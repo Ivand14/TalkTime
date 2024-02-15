@@ -2,7 +2,7 @@ import { Actions } from "@/lib/definitions";
 
 const initialState = {}
 
-const RootState = (state = initialState, action:Actions) => { 
+const rootReducer = (state = initialState, action:Actions) => { 
     switch (action.type) {
         
         default:
@@ -10,4 +10,4 @@ const RootState = (state = initialState, action:Actions) => {
     }
 }
 
-export default RootState
+export default rootReducer
