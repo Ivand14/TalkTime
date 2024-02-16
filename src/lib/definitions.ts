@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ChangeEvent } from "react"
+import { ButtonHTMLAttributes, ChangeEvent, ReactNode } from "react"
 
 export interface Actions {
     type: string,
@@ -12,6 +12,8 @@ export interface InputProps {
     value: string,
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
     className?:string
+    label?:string,
+    endContent?:ReactNode
 }
 
 export interface ButtonProps {
