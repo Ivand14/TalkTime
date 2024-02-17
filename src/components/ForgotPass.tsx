@@ -31,6 +31,7 @@ export default function ForgotPass() {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 placement="top-center"
+                className='bg-slate-800'
             >
                 <ModalContent>
                     {(onClose) => (
@@ -45,7 +46,6 @@ export default function ForgotPass() {
                                     label="Email"
                                     placeholder="Ingresa tu email"
                                     variant="bordered"
-                                    className="text-black"
                                     value={email}
                                     onChange={event => setEmail(event.target.value)}
                                 />

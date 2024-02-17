@@ -6,12 +6,14 @@ import Button from './Button'
 import ForgotPass from './ForgotPass'
 import Inputs from '@/components/Input'
 import Link from 'next/link'
+import{MailIcon} from '@/components/MailIcon'
+import{LockIcon} from '@/components/LockIcon'
 import { auth } from '@/lib/firebase'
 import { credentials } from '@/lib/definitions'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
-import { MailIcon } from './MailIcon'
-import { LockIcon } from './LockIcon'
+import { userData } from '@/redux/actions'
 
 const LoginForm = () => {
 
@@ -21,6 +23,7 @@ const LoginForm = () => {
     })
 
     const router = useRouter()
+    const dispatch = useDispatch()
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const name = event.target.name
@@ -35,7 +38,7 @@ const LoginForm = () => {
         event?.preventDefault()
         try {
             const getUser = await signInWithEmailAndPassword(auth, credentials.email, credentials.password)
-            console.log(getUser)
+            dispatch(userData({email:getUser.user.email,uid:getUser.user.uid}))
             if (getUser.operationType === 'signIn') router.push('/Home')
             setCredentials({
                 email:'',
