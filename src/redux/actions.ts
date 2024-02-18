@@ -19,7 +19,6 @@ export const userData = ({ email, uid }: userDataProps) => {
 }
 
 
-
 export const AllMessages = ({ message }: { message: messagesProps[] }) => {
     console.log(message)
     return {

@@ -1,4 +1,4 @@
-import { CHATS, CHATS_ID, RECIVE_MESSAGE, SEND_MESSAGE, USER_DATA, ALL_MESSAGES } from "./actions";
+import { ALL_MESSAGES, CHATS, CHATS_ID, USER_DATA } from "./actions";
 
 import { Actions } from "@/lib/definitions";
 
@@ -18,16 +18,6 @@ const rootReducer = (state = initialState, action: Actions) => {
                 ...state,
                 actualyUser: action.payload.email,
                 actualyUid: action.payload.uid
-            }
-        case RECIVE_MESSAGE:
-            return {
-                ...state,
-                message: [...state.message, action.payload]
-            }
-        case SEND_MESSAGE:
-            return {
-                ...state,
-                message: [...state.message, action.payload]
             }
         case CHATS_ID:
             return {
