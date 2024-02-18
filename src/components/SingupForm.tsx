@@ -68,8 +68,8 @@ const SingupForm = () => {
     }
 
     return (
-        <div className='flex flex-col items-center justify-center md:flex-row w-[25rem]'>
-            <form className='bg-slate-800 rounded-xl h-full w-full flex flex-col items-center p-10 gap-10 border-white border-2 m-2 md:mx-5' onSubmit={createUser}>
+        <div className='flex flex-col items-center justify-center'>
+            <form className='bg-slate-800 rounded-xl h-full w-full flex flex-col items-center p-5 gap-4border-white border-2 my-20 gap-10' onSubmit={createUser}>
                 <Input label='Email' name='email' type='email' placeholder='Ingresa tu email' value={credentials.email} onChange={onChange} endContent={<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
                 <Input label='Password' name='password' type='password' placeholder='Ingresa tu contraseña' value={credentials.password} onChange={onChange} endContent={<LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
                 <Button type='submit'>Registrarse</Button>

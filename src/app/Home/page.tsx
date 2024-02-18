@@ -1,4 +1,5 @@
 import ChatBox from '@/components/ChatBox'
+import React from "react"
 import SideBar from '@/components/SideBar'
 
 const Home = () => {
@@ -12,4 +13,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Home 

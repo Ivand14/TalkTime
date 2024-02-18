@@ -43,11 +43,15 @@ const LoginForm = () => {
         try {
             const getUser = await signInWithEmailAndPassword(auth, credentials.email, credentials.password)
             dispatch(userData({ email: getUser.user.email, uid: getUser.user.uid }))
+
             if (getUser.operationType === 'signIn') router.push('/Home')
+            
             setCredentials({
                 email: '',
                 password: ''
             })
+
+
         } catch (error: any) {
             console.log(error)
             const errorCode = error.code
