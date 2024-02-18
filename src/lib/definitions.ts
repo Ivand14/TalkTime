@@ -32,9 +32,9 @@ export interface userDataProps {
     uid: string
 }
 
-export interface messages { 
+export interface messagesProps { 
     id:string,
-    send:string,
+    sender:string,
     senderId:string,
-    message:string
+    text:string
 }

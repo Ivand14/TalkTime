@@ -61,6 +61,8 @@ const ChatBox = () => {
     }
 
 
+
+
     return (
         <div className="flex-col h-[35rem]  bg-slate-800 w-[50%] p-2 rounded-xl justify-beetwen">
             {emailContact.email &&

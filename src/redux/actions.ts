@@ -1,4 +1,4 @@
-import { userDataProps, messages } from "@/lib/definitions"
+import { userDataProps, messagesProps } from "@/lib/definitions"
 
 export const USER_DATA: string = 'USER_DATA'
 export const RECIVE_MESSAGE: string = 'RECIVE_MESSAGE'
@@ -20,7 +20,7 @@ export const userData = ({ email, uid }: userDataProps) => {
 
 
 
-export const AllMessages = ({ message }: { message: messages[] }) => {
+export const AllMessages = ({ message }: { message: messagesProps[] }) => {
     console.log(message)
     return {
         type: ALL_MESSAGES,
@@ -30,7 +30,6 @@ export const AllMessages = ({ message }: { message: messages[] }) => {
 
 
 export const chatId = ({ chatId }: { chatId: string }) => {
-    console.log(chatId)
     return {
         type: CHATS_ID,
         payload: chatId
@@ -38,7 +37,6 @@ export const chatId = ({ chatId }: { chatId: string }) => {
 }
 
 export const userChat = ({ user }: { user: any }) => {
-    console.log(user)
     return {
         type: CHATS,
         payload: user

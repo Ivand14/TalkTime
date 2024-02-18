@@ -8,7 +8,7 @@ const initialState = {
     message: [],
     chatId: '',
     user: {},
-    messages: []
+    messagesSaved: []
 }
 
 const rootReducer = (state = initialState, action: Actions) => {
@@ -42,8 +42,9 @@ const rootReducer = (state = initialState, action: Actions) => {
         case ALL_MESSAGES:
             return {
                 ...state,
-                message:[...state.message,action.payload]
+                messagesSaved: action.payload
             }
+
         default:
             return state;
     }

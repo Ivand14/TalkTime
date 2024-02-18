@@ -1,12 +1,15 @@
 "use client"
 
+import { Avatar, Button } from "@nextui-org/react";
+import { auth, db } from "@/lib/firebase"
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
 import { useDispatch, useSelector } from "react-redux"
 
-import { Avatar } from "@nextui-org/react";
 import Inputs from "./Input"
+import { MdOutlineInput } from "react-icons/md";
 import { chatId } from "@/redux/actions";
-import { db } from "@/lib/firebase"
+import { signOut } from "firebase/auth";
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 
 interface RootState {
@@ -25,8 +28,7 @@ const SearchContact = () => {
     const actualyId = useSelector((state: RootState) => state.actualyUid)
     const actualyEmail = useSelector((state: RootEmail) => state.actualyUser)
     const dispatch = useDispatch()
-
-    console.log(user)
+    const router = useRouter()
 
     const handleSearch = async () => {
         //* Hago una query al firebase para que me busque al usuario que ingreso
@@ -55,11 +57,11 @@ const SearchContact = () => {
     const handleSelect = async () => {
 
         const combinedId = actualyId > user.uid ? actualyId + user.uid : user.uid + actualyId
-        dispatch(chatId({chatId:combinedId}))
+        dispatch(chatId({ chatId: combinedId }))
 
         try {
             const docs = await getDoc(doc(db, "chats", combinedId))
-            
+
             if (!docs.exists()) {
                 await setDoc(doc(db, "chats", combinedId), { messagess: [] })
                 await updateDoc(doc(db, "userChats", actualyId), {
@@ -87,14 +89,31 @@ const SearchContact = () => {
 
     }
 
+    const onSingout = async () => { 
+        try {
+            signOut(auth);
+            router.push('/')
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+
 
 
 
     return (
         <div className="flex-col items-center">
-            <div className="flex items-center gap-5 m-3 ">
-                <Avatar name={actualyEmail?.slice(0,2).toUpperCase()} />
-                <h2>{actualyEmail}</h2>
+            <div className="flex items-center gap-5 m-3 justify-between">
+                <div className="flex gap-2 items-center">
+                    <Avatar name={actualyEmail?.slice(0, 2).toUpperCase()} />
+                    <h2>{actualyEmail}</h2>
+                </div>
+                <div>
+                    <Button color="danger" variant="shadow" onClick={onSingout}>
+                        <MdOutlineInput size={30} />
+                    </Button>
+                </div>
             </div>
             <div>
                 <Inputs name="search" type="text" placeholder="Buscar contacto" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} onKeyDown={keyDown} className='w-full rounded-mt-none rounded-bl-none' />

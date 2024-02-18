@@ -1,10 +1,9 @@
-import { DocumentData, doc, onSnapshot } from "firebase/firestore"
-import { useEffect, useState } from "react"
+import { doc, onSnapshot } from "firebase/firestore"
+import { useDispatch, useSelector } from "react-redux"
 
-
+import { AllMessages } from '@/redux/actions'
 import { db } from "@/lib/firebase"
-import { useSelector,useDispatch } from "react-redux"
-import{AllMessages} from '@/redux/actions'
+import { useEffect } from "react"
 
 interface RootState {
     chatId: string
@@ -14,21 +13,28 @@ interface actualyUser {
     actualyUser: string
 }
 
+interface messagesProps {
+    messagesSaved: {
+        id: string,
+        sender: string,
+        senderId: string,
+        text: string
+    }[]
+}
+
 
 const Messages = () => {
-
-    const [messages, setMessages] = useState<DocumentData>([])
     const chatId = useSelector((state: RootState) => state.chatId)
     const actualyUser = useSelector((state: actualyUser) => state.actualyUser)
+    const messageSaved = useSelector((state: messagesProps) => state.messagesSaved)
     const dispatch = useDispatch()
-
+    console.log(messageSaved)
 
     useEffect(() => {
 
         if (chatId) {
             const unSubscription = onSnapshot(doc(db, "chats", chatId), (doc) => {
-                doc.exists() && setMessages(doc.data().messages)
-                dispatch(AllMessages({message:doc?.data()?.messages}))
+                doc.exists() && dispatch(AllMessages({ message: doc?.data()?.messages }))
             })
 
 
@@ -41,21 +47,21 @@ const Messages = () => {
 
     return (
         <div>
-            {messages && Object?.entries(messages)?.map((mess, index) => (
+            {messageSaved && messageSaved?.map((mess: { id: string, senderId: string, sender: string, text: string }, index:number) => (
                 <div className='flex-col' key={index}>
                     {
-                        mess[1].sender === actualyUser ?
+                        mess.sender === actualyUser ?
                             <div className='bg-teal-600 m-3 h-auto rounded-lg rounded-tr-none w-[15rem] flex items-end flex-wrap ml-auto text-start overflow-hidden align-items: flex-end;'>
-                                <h3 className='max-w-[15rem] p-4 h-auto break-all'>{mess[1].text}</h3>
+                                <h3 className='max-w-[15rem] p-4 h-auto break-all'>{mess.text}</h3>
                             </div>
                             :
-
                             <div className='bg-gray-500 m-3 rounded-lg rounded-tl-none w-[15rem] flex items-end flex-wrap mr-auto text-left'>
-                                <h3 className='max-w-[15rem] p-4 h-auto break-all'>{mess[1].text}</h3>
+                                <h3 className='max-w-[15rem] p-4 h-auto break-all'>{mess.text}</h3>
                             </div>
                     }
                 </div>
             ))}
+
         </div>
 
     )
