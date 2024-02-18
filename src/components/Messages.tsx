@@ -41,7 +41,7 @@ const Messages = () => {
             return () => unSubscription()
         }
 
-    }, [chatId])
+    }, [chatId,dispatch])
 
 
 

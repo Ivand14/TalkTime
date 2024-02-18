@@ -38,7 +38,8 @@ export default function ForgotPass() {
                         <>
                             <ModalHeader className="flex flex-col gap-1">Recupera tu contraseña</ModalHeader>
                             <ModalBody>
-                                <p>Luego de presionar "Recuperar" recuerda revisar tu email</p>
+                                <p>{'Luego de presionar "Recuperar" recuerda revisar tu email'}</p>
+
                                 <Input
                                     autoFocus
                                     endContent={
