@@ -3,8 +3,8 @@ import { ALL_MESSAGES, CHATS, CHATS_ID, USER_DATA } from "./actions";
 import { Actions } from "@/lib/definitions";
 
 const initialState = {
-    actualyUser: localStorage.getItem('actualyUser') || '', // Obtener del localStorage si existe
-    actualyUid: localStorage.getItem('actualyUid') || '', // Obtener del localStorage si existe
+    actualyUser: typeof window !== 'undefined' &&  localStorage.getItem('actualyUser') || '', // Obtener del localStorage si existe
+    actualyUid: typeof window !== 'undefined' &&  localStorage.getItem('actualyUid') || '', // Obtener del localStorage si existe
     message: [],
     chatId: '',
     user: {},
@@ -14,8 +14,10 @@ const initialState = {
 const rootReducer = (state = initialState, action: Actions) => {
     switch (action.type) {
         case USER_DATA:
-            localStorage.setItem('actualyUser', action.payload.email); // Guardar en localStorage
-            localStorage.setItem('actualyUid', action.payload.uid); // Guardar en localStorage
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('actualyUser', action.payload.email);
+                localStorage.setItem('actualyUid', action.payload.uid);
+            }
             return {
                 ...state,
                 actualyUser: action.payload.email,

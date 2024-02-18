@@ -92,7 +92,7 @@ const SearchContact = () => {
     const onSingout = async () => { 
         try {
             signOut(auth);
-            localStorage.clear()
+            typeof window !== 'undefined' && localStorage.clear()
             router.push('/')
         } catch (error) {
             console.log(error);
