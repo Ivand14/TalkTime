@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
 
 import Button from './Button'
 import ForgotPass from './ForgotPass'
@@ -73,18 +72,6 @@ const LoginForm = () => {
 
     return (
         <div className='flex-col items-center justify-center'>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-            />
             <form className=' bg-slate-800 rounded-xl  w-auto flex flex-col items-center justify-center p-10 gap-10 border-white border-2' onSubmit={getUser}>
                 <Inputs label='Email' name='email' type='email' placeholder='Ingresa tu email' value={credentials.email} onChange={onChange} endContent={<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
                 <Inputs label='Password' name='password' type='password' placeholder='Ingresa tu contraseña' value={credentials.password} onChange={onChange} endContent={<LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />

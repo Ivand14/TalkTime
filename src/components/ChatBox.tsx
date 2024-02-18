@@ -38,7 +38,6 @@ const ChatBox = () => {
     const actualyUser = useSelector((state: RootActualyEmail) => state.actualyUser)
     const actualyId = useSelector((state: RootActualyId) => state.actualyUid)
 
-    console.log(chatID)
 
     const onHandleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setSendMessage(event.target.value)

@@ -1,11 +1,9 @@
 "use client"
 
 import React, { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
 import { auth, db } from '@/lib/firebase'
 import { doc, setDoc } from 'firebase/firestore'
 
-import { Bounce } from 'react-toastify';
 import Button from './Button'
 import Input from './Input'
 import { LockIcon } from '@/components/LockIcon'

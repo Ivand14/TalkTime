@@ -4,7 +4,6 @@
 import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import React, { useState } from "react";
 
-import { LockIcon } from '@/components/LockIcon'
 import { MailIcon } from '@/components/MailIcon'
 import { auth } from "@/lib/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";

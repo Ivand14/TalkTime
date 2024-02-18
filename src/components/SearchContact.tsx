@@ -117,7 +117,7 @@ const SearchContact = () => {
                 </div>
             </div>
             <div>
-                <Inputs name="search" type="text" placeholder="Buscar contacto" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} onKeyDown={keyDown} className='w-full rounded-mt-none rounded-bl-none' />
+                <Inputs name="search" type="text" placeholder="Agregar contacto" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} onKeyDown={keyDown} className='w-full rounded-mt-none rounded-bl-none' />
             </div>
             {user && (
                 <div className="bg-gray-400 p-2 rounded-bl-sm rounded-br-sm cursor-pointer mx-4" onClick={handleSelect}>
