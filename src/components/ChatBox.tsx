@@ -63,7 +63,7 @@ const ChatBox = () => {
 
 
     return (
-        <div className="flex-col h-[35rem]  bg-slate-800 w-[50%] p-2 rounded-xl justify-beetwen">
+        <div className="flex-col lg:h-[35rem] md:w-[55%]   bg-slate-800 w-[50%] p-2 rounded-xl justify-beetwen md:h-[30rem]">
             {emailContact.email &&
                 <section className='flex justify-center items-center w-[20rem] rounded-xl p-3 mb-5  bg-slate-300 gap-1 text-black'>
                     <MdEmail />
@@ -76,7 +76,7 @@ const ChatBox = () => {
             </div>
 
             <div className=' w-full'>
-                <Inputs name="chat" type="text" placeholder="Escribe un mensaje" value={sendMessage} className="w-full break-all lg:w-full" endContent={<button onClick={onSendMessages} ><MdSend /></button>} onChange={(event) => onHandleChange(event)} />
+                <Inputs name="chat" type="text" placeholder="Escribe un mensaje" value={sendMessage} className="w-full break-all lg:w-full md:w-full" endContent={<button onClick={onSendMessages} ><MdSend /></button>} onChange={(event) => onHandleChange(event)} />
             </div>
         </div>
     )

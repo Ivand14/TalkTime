@@ -111,13 +111,13 @@ const SearchContact = () => {
                     <h2>{actualyEmail}</h2>
                 </div>
                 <div>
-                    <Button color="danger" variant="shadow" onClick={onSingout}>
+                    <Button className="md:h-10 md:w-7" color="danger" variant="shadow" onClick={onSingout}>
                         <MdOutlineInput size={30} />
                     </Button>
                 </div>
             </div>
             <div>
-                <Inputs name="search" type="text" placeholder="Agregar contacto" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} onKeyDown={keyDown} className='lg:w-full rounded-mt-none rounded-bl-none' />
+                <Inputs name="search" type="text" placeholder="Agregar contacto" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} onKeyDown={keyDown} className='lg:w-full rounded-mt-none rounded-bl-none md:w-full' />
             </div>
             {user && (
                 <div className="bg-gray-400 p-2 rounded-bl-sm rounded-br-sm cursor-pointer mx-4" onClick={handleSelect}>
