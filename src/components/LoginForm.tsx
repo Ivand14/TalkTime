@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { resetState, userData } from '@/redux/actions'
 
 import Button from './Button'
 import ForgotPass from './ForgotPass'
@@ -13,7 +14,6 @@ import { credentials } from '@/lib/definitions'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
-import { userData } from '@/redux/actions'
 
 const LoginForm = () => {
 
@@ -44,7 +44,7 @@ const LoginForm = () => {
             dispatch(userData({ email: getUser.user.email, uid: getUser.user.uid }))
 
             if (getUser.operationType === 'signIn') router.push('/Home')
-            
+
             setCredentials({
                 email: '',
                 password: ''
@@ -68,12 +68,19 @@ const LoginForm = () => {
         }
     }
 
+    useEffect(() => {
+        if (window.location.pathname === "/") {
+            typeof window !== 'undefined' && localStorage.clear()
+            dispatch(resetState());
+        }
+    }, [])
+
 
 
     return (
         <div className='flex-col items-center justify-center max-[425px]: w-[18rem]'>
             <form className=' bg-slate-800 rounded-xl  w-auto flex flex-col items-center justify-center p-10 gap-10 border-white border-2' onSubmit={getUser}>
-                <Inputs label='Email' name='email' type='email' placeholder='Ingresa tu email' value={credentials.email} onChange={onChange} endContent={<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}/>
+                <Inputs label='Email' name='email' type='email' placeholder='Ingresa tu email' value={credentials.email} onChange={onChange} endContent={<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
                 <Inputs label='Password' name='password' type='password' placeholder='Ingresa tu contraseña' value={credentials.password} onChange={onChange} endContent={<LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
                 <Button type='submit'>Iniciar Sesion</Button>
                 {errEmail && <h2 className='text-red-900'>{errEmail}</h2>}

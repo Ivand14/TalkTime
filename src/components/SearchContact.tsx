@@ -5,11 +5,11 @@ import { RootActualyEmail, RootActualyId } from "@/lib/definitions";
 import { auth, db } from "@/lib/firebase"
 import { chatId, resetState } from "@/redux/actions";
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux"
 
 import Inputs from "./Input"
 import { MdOutlineInput } from "react-icons/md";
-import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
 
@@ -82,19 +82,14 @@ const SearchContact = () => {
 
     }
 
-    const onSingout = async () => { 
-        try {
-            signOut(auth);
-            typeof window !== 'undefined' && localStorage.clear()
-            dispatch(resetState()); 
+
+    const onSingout = () => {
+        signOut(auth).then(() => {
             router.push('/')
-        } catch (error) {
+        }).catch((error) => {
             console.log(error);
-        }
+        });
     }
-    
-
-
 
 
     return (
