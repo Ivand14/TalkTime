@@ -1,3 +1,4 @@
+import { RootActualyEmail, RootChatId, messagesProps } from "@/lib/definitions"
 import { doc, onSnapshot } from "firebase/firestore"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -5,30 +6,12 @@ import { AllMessages } from '@/redux/actions'
 import { db } from "@/lib/firebase"
 import { useEffect } from "react"
 
-interface RootState {
-    chatId: string
-}
-
-interface actualyUser {
-    actualyUser: string
-}
-
-interface messagesProps {
-    messagesSaved: {
-        id: string,
-        sender: string,
-        senderId: string,
-        text: string
-    }[]
-}
-
-
 const Messages = () => {
-    const chatId = useSelector((state: RootState) => state.chatId)
-    const actualyUser = useSelector((state: actualyUser) => state.actualyUser)
+    const chatId = useSelector((state: RootChatId) => state.chatId)
+    const actualyUser = useSelector((state: RootActualyEmail) => state.actualyUser)
     const messageSaved = useSelector((state: messagesProps) => state.messagesSaved)
     const dispatch = useDispatch()
-    console.log(messageSaved)
+
 
     useEffect(() => {
 
@@ -41,13 +24,13 @@ const Messages = () => {
             return () => unSubscription()
         }
 
-    }, [chatId,dispatch])
+    }, [chatId, dispatch])
 
 
 
     return (
         <div>
-            {messageSaved && messageSaved?.map((mess: { id: string, senderId: string, sender: string, text: string }, index:number) => (
+            {messageSaved && messageSaved?.map((mess: { id: string, senderId: string, sender: string, text: string }, index: number) => (
                 <div className='flex-col' key={index}>
                     {
                         mess.sender === actualyUser ?

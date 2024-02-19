@@ -1,6 +1,7 @@
 "use client"
 
 import { Avatar, Button } from "@nextui-org/react";
+import { RootActualyEmail, RootActualyId } from "@/lib/definitions";
 import { auth, db } from "@/lib/firebase"
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
 import { useDispatch, useSelector } from "react-redux"
@@ -12,21 +13,13 @@ import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
 
-interface RootState {
-    actualyUid: string,
-}
-
-interface RootEmail {
-    actualyUser: string
-}
-
 const SearchContact = () => {
 
     const [userEmail, setUserEmail] = useState<string>('')
     const [user, setUser] = useState<any>(null)
 
-    const actualyId = useSelector((state: RootState) => state.actualyUid)
-    const actualyEmail = useSelector((state: RootEmail) => state.actualyUser)
+    const actualyId = useSelector((state: RootActualyId) => state.actualyUid)
+    const actualyEmail = useSelector((state: RootActualyEmail) => state.actualyUser)
     const dispatch = useDispatch()
     const router = useRouter()
 

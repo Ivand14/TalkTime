@@ -1,6 +1,7 @@
 "use client"
 
 import { ChangeEvent, useState } from "react"
+import {RootActualyEmail, RootActualyId, RootChatId, RootUser} from '@/lib/definitions'
 import { arrayUnion, doc, updateDoc } from "firebase/firestore"
 
 import Inputs from "./Input"
@@ -11,30 +12,11 @@ import { db } from "@/lib/firebase"
 import { useSelector } from "react-redux"
 import { v4 } from 'uuid'
 
-interface RootEmail {
-    user: {
-        email: string,
-        uid: string
-    }
-}
-
-interface RootuId {
-    chatId: string
-}
-
-interface RootActualyEmail {
-    actualyUser: string,
-}
-
-interface RootActualyId {
-    actualyUid: string,
-}
-
 const ChatBox = () => {
 
     const [sendMessage, setSendMessage] = useState<string>('')
-    const emailContact = useSelector((state: RootEmail) => state.user)
-    const chatID = useSelector((state: RootuId) => state.chatId)
+    const emailContact = useSelector((state: RootUser) => state.user)
+    const chatID = useSelector((state: RootChatId) => state.chatId)
     const actualyUser = useSelector((state: RootActualyEmail) => state.actualyUser)
     const actualyId = useSelector((state: RootActualyId) => state.actualyUid)
 

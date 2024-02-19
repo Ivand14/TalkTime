@@ -38,3 +38,31 @@ export interface messagesProps {
     senderId:string,
     text:string
 }
+
+export interface RootUser {
+    user: {
+        email: string,
+        uid: string
+    }
+}
+
+export interface RootChatId {
+    chatId: string
+}
+
+export interface RootActualyEmail {
+    actualyUser: string,
+}
+
+export interface RootActualyId {
+    actualyUid: string,
+}
+
+export interface messagesProps {
+    messagesSaved: {
+        id: string,
+        sender: string,
+        senderId: string,
+        text: string
+    }[]
+}

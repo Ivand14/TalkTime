@@ -1,6 +1,7 @@
 "use client"
 
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
+import { RootActualyId, RootUser } from "@/lib/definitions";
 import { chatId, userChat } from "@/redux/actions";
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
@@ -8,20 +9,9 @@ import { useEffect, useState } from "react"
 import { Avatar } from "@nextui-org/react";
 import { db } from '@/lib/firebase'
 
-interface RootState {
-    actualyUid: string,
-}
-
-interface userProp { 
-    user:{
-        email:string,
-        uid:string
-    }
-}
-
 const Contacts = () => {
 
-    const actualyId = useSelector((state: RootState) => state.actualyUid)
+    const actualyId = useSelector((state: RootActualyId) => state.actualyUid)
     const [chats, setChats] = useState<DocumentData>([])
     const dispatch = useDispatch()
 
@@ -41,12 +31,11 @@ const Contacts = () => {
     }, [actualyId])
 
 
-    const handleSelect = (user: userProp) => {
+    const handleSelect = (user: RootUser) => {
         dispatch(userChat({ user }))
     }
 
     const handleUidSelect = (uid: string) => {
-        console.log(uid)
         dispatch(chatId({ chatId: uid }))
     }
 
