@@ -41,12 +41,12 @@ const ChatBox = () => {
         }
     }
 
-
+    console.log(emailContact)
 
 
     return (
         <div className="flex-col lg:h-[35rem] md:w-[55%]   bg-slate-800 w-[50%] p-2 rounded-xl justify-beetwen md:h-[30rem]">
-            {emailContact.email &&
+            {emailContact.email  &&
                 <section className='flex justify-center items-center w-[20rem] rounded-xl p-3 mb-5  bg-slate-300 gap-1 text-black'>
                     <MdEmail />
                     <h2>Destinatario:</h2>

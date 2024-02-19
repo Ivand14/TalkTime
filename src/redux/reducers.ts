@@ -3,12 +3,12 @@ import { ALL_MESSAGES, CHATS, CHATS_ID, USER_DATA } from "./actions";
 import { Actions } from "@/lib/definitions";
 
 const initialState = {
-    actualyUser: typeof window !== 'undefined' &&  localStorage.getItem('actualyUser') || '', // Obtener del localStorage si existe
-    actualyUid: typeof window !== 'undefined' &&  localStorage.getItem('actualyUid') || '', // Obtener del localStorage si existe
+    actualyUser: typeof window !== 'undefined' && localStorage.getItem('actualyUser') || '', 
+    actualyUid: typeof window !== 'undefined' && localStorage.getItem('actualyUid') || '', 
     message: [],
     chatId: '',
     user: {},
-    messagesSaved: []
+    messagesSaved: [],
 }
 
 const rootReducer = (state = initialState, action: Actions) => {
@@ -38,6 +38,7 @@ const rootReducer = (state = initialState, action: Actions) => {
                 ...state,
                 messagesSaved: action.payload
             }
+
 
         default:
             return state;
