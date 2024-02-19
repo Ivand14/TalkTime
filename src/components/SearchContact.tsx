@@ -3,12 +3,12 @@
 import { Avatar, Button } from "@nextui-org/react";
 import { RootActualyEmail, RootActualyId } from "@/lib/definitions";
 import { auth, db } from "@/lib/firebase"
+import { chatId, resetState } from "@/redux/actions";
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
 import { useDispatch, useSelector } from "react-redux"
 
 import Inputs from "./Input"
 import { MdOutlineInput } from "react-icons/md";
-import { chatId } from "@/redux/actions";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
@@ -86,6 +86,7 @@ const SearchContact = () => {
         try {
             signOut(auth);
             typeof window !== 'undefined' && localStorage.clear()
+            dispatch(resetState()); 
             router.push('/')
         } catch (error) {
             console.log(error);

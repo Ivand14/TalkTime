@@ -41,7 +41,6 @@ const ChatBox = () => {
         }
     }
 
-    console.log(emailContact)
 
 
     return (

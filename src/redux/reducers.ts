@@ -38,11 +38,12 @@ const rootReducer = (state = initialState, action: Actions) => {
                 ...state,
                 messagesSaved: action.payload
             }
-
-
+        case 'RESET_STATE':
+            return initialState;
         default:
             return state;
     }
 }
+
 
 export default rootReducer;

@@ -6,6 +6,7 @@ export const SEND_MESSAGE: string = 'SEND_MESSAGE'
 export const CHATS: string = "CHATS"
 export const CHATS_ID: string = "CHATS_ID"
 export const ALL_MESSAGES: string = "ALL_MESSAGES"
+export const RESET_STATE:string = 'RESET_STATE'
 
 export const userData = ({ email, uid }: userDataProps) => {
     return {
@@ -41,3 +42,8 @@ export const userChat = ({ user }: { user: any }) => {
 }
 
 
+// actions.js
+
+export const resetState = () => ({
+    type: 'RESET_STATE'
+});
