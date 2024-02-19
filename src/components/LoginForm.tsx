@@ -71,16 +71,16 @@ const LoginForm = () => {
 
 
     return (
-        <div className='flex-col items-center justify-center'>
+        <div className='flex-col items-center justify-center max-[425px]: w-[18rem]'>
             <form className=' bg-slate-800 rounded-xl  w-auto flex flex-col items-center justify-center p-10 gap-10 border-white border-2' onSubmit={getUser}>
-                <Inputs label='Email' name='email' type='email' placeholder='Ingresa tu email' value={credentials.email} onChange={onChange} endContent={<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
+                <Inputs label='Email' name='email' type='email' placeholder='Ingresa tu email' value={credentials.email} onChange={onChange} endContent={<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}/>
                 <Inputs label='Password' name='password' type='password' placeholder='Ingresa tu contraseña' value={credentials.password} onChange={onChange} endContent={<LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
                 <Button type='submit'>Iniciar Sesion</Button>
                 {errEmail && <h2 className='text-red-900'>{errEmail}</h2>}
                 {errPass && <h2 className='text-red-900'>{errPass}</h2>}
-                <h3 className='p-3 mr-5'>Olvidaste tu contraseña? <span><ForgotPass /></span></h3>
+                <h3 className='p-3 text-center w-[15rem] '>Olvidaste tu contraseña? <span><ForgotPass /></span></h3>
             </form>
-            <h3 className='p-3'>No tenes cuenta? <Link className='text-cyan-600 underline' href={'/Register'} >Registrate</Link></h3>
+            <h3 className='p-3 min-[320px]:w-[15rem] min-[320px]:text-base'>No tenes cuenta? <Link className='text-cyan-600 underline' href={'/Register'} >Registrate</Link></h3>
         </div>
     )
 }
