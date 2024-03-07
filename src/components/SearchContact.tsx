@@ -1,7 +1,7 @@
 "use client"
 
 import { Avatar, Button } from "@nextui-org/react";
-import { RootActualyEmail, RootActualyId } from "@/lib/definitions";
+import { RootActualyEmail, RootActualyId, RootActualyName, RootActualyPhoto } from "@/lib/definitions";
 import { auth, db } from "@/lib/firebase"
 import { chatId, resetState } from "@/redux/actions";
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
@@ -20,6 +20,8 @@ const SearchContact = () => {
 
     const actualyId = useSelector((state: RootActualyId) => state.actualyUid)
     const actualyEmail = useSelector((state: RootActualyEmail) => state.actualyUser)
+    const actualyPhoto = useSelector((state: RootActualyPhoto) => state.actualyPhoto)
+    const actualyName = useSelector((state: RootActualyName) => state.actualyName)
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -42,7 +44,6 @@ const SearchContact = () => {
 
     }
 
-
     const keyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         event.code === 'Enter' && handleSearch()
     }
@@ -60,14 +61,16 @@ const SearchContact = () => {
                 await updateDoc(doc(db, "userChats", actualyId), {
                     [combinedId + ".userData"]: {
                         uid: user.uid,
-                        email: user.email
+                        email: user.email,
+                        photoURL:user.photoURL
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 })
                 await updateDoc(doc(db, "userChats", user.uid), {
                     [combinedId + ".userData"]: {
                         uid: actualyId,
-                        email: actualyEmail
+                        email: actualyEmail,
+                        photoURL:user.photoURL
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 })
@@ -96,8 +99,8 @@ const SearchContact = () => {
         <div className="flex-col items-center">
             <div className="flex items-center gap-5 m-3 justify-between">
                 <div className="flex gap-2 items-center">
-                    <Avatar name={actualyEmail?.slice(0, 2).toUpperCase()} />
-                    <h2>{actualyEmail}</h2>
+                    <Avatar src={actualyPhoto} size="lg" />
+                    {actualyName ? <h2 className='capitalize'>{actualyName}</h2> : <h2>{actualyEmail}</h2>}
                 </div>
                 <div>
                     <Button className="md:h-10 md:w-7" color="danger" variant="shadow" onClick={onSingout}>
@@ -111,7 +114,7 @@ const SearchContact = () => {
             {user && (
                 <div className="bg-gray-400 p-2 rounded-bl-sm rounded-br-sm cursor-pointer mx-4" onClick={handleSelect}>
                     <div>
-                        <span className="p-4">{user.email}</span>
+                        <span className="p-4">{user.email ? user.email : "Usuario no encontrado"}</span>
                     </div>
                 </div>
             )}

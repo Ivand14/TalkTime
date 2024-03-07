@@ -6,10 +6,10 @@ export interface Actions {
 }
 
 export interface InputProps {
-    name: string,
+    name?: string,
     type: string,
-    placeholder: string,
-    value: string,
+    placeholder?: string,
+    value?: string,
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
     className?: string
     label?: string,
@@ -24,19 +24,28 @@ export interface ButtonProps {
 
 export interface credentials {
     email: string,
-    password: string
+    password: string,
+    name: string,
+    photoURL: string
+}
+
+export interface LoginCredentials {
+    email: string,
+    password: string,
 }
 
 export interface userDataProps {
     email: string | null,
-    uid: string
+    uid: string,
+    photoUrl: string | null,
+    displayName: string | null
 }
 
-export interface messagesProps { 
-    id:string,
-    sender:string,
-    senderId:string,
-    text:string
+export interface messagesProps {
+    id: string,
+    sender: string,
+    senderId: string,
+    text: string
 }
 
 export interface RootUser {
@@ -58,6 +67,14 @@ export interface RootActualyId {
     actualyUid: string,
 }
 
+export interface RootActualyPhoto {
+    actualyPhoto: string,
+}
+
+export interface RootActualyName {
+    actualyName: string,
+}
+
 export interface messagesProps {
     messagesSaved: {
         id: string,
@@ -65,4 +82,8 @@ export interface messagesProps {
         senderId: string,
         text: string
     }[]
+}
+
+export interface isMobile { 
+    chatBox:boolean
 }

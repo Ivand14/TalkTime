@@ -8,8 +8,7 @@ import Providers from "@/lib/Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Test",
-  description: "Test",
+  title: "TalkTime"
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

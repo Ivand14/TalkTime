@@ -3,26 +3,28 @@
 import React, { useEffect, useState } from 'react'
 import { resetState, userData } from '@/redux/actions'
 
-import Button from './Button'
+import Button from './ButtonR'
 import ForgotPass from './ForgotPass'
 import Inputs from '@/components/Input'
 import Link from 'next/link'
 import { LockIcon } from '@/components/LockIcon'
+import { LoginCredentials } from '@/lib/definitions'
 import { MailIcon } from '@/components/MailIcon'
 import { auth } from '@/lib/firebase'
-import { credentials } from '@/lib/definitions'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
+import ButtonLoading from '@/components/ButtonLoading'
 
 const LoginForm = () => {
 
-    const [credentials, setCredentials] = useState<credentials>({
+    const [credentials, setCredentials] = useState<LoginCredentials>({
         email: '',
         password: ''
     })
     const [errPass, setErrPass] = useState<string>('')
     const [errEmail, setErrEmail] = useState<string>('')
+    const [isLoading,setIsLoading] = useState<boolean>(false)
     const router = useRouter()
     const dispatch = useDispatch()
 
@@ -41,7 +43,10 @@ const LoginForm = () => {
         setErrEmail('')
         try {
             const getUser = await signInWithEmailAndPassword(auth, credentials.email, credentials.password)
-            dispatch(userData({ email: getUser.user.email, uid: getUser.user.uid }))
+
+            dispatch(userData({ email: getUser.user.email, uid: getUser.user.uid, photoUrl: getUser.user.photoURL, displayName: getUser.user.displayName }))
+
+            setIsLoading(true)
 
             if (getUser.operationType === 'signIn') router.push('/Home')
 
@@ -78,11 +83,11 @@ const LoginForm = () => {
 
 
     return (
-        <div className='flex-col items-center justify-center max-[425px]: w-[18rem]'>
+        <div className='flex-col items-center justify-center '>
             <form className=' bg-slate-800 rounded-xl  w-auto flex flex-col items-center justify-center p-10 gap-10 border-white border-2' onSubmit={getUser}>
                 <Inputs label='Email' name='email' type='email' placeholder='Ingresa tu email' value={credentials.email} onChange={onChange} endContent={<MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
                 <Inputs label='Password' name='password' type='password' placeholder='Ingresa tu contraseña' value={credentials.password} onChange={onChange} endContent={<LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />} />
-                <Button type='submit'>Iniciar Sesion</Button>
+                {isLoading ? <ButtonLoading/> : <Button type='submit'>Iniciar Sesion</Button>}
                 {errEmail && <h2 className='text-red-900'>{errEmail}</h2>}
                 {errPass && <h2 className='text-red-900'>{errPass}</h2>}
                 <h3 className='p-3 text-center w-[15rem] '>Olvidaste tu contraseña? <span><ForgotPass /></span></h3>

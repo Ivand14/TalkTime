@@ -6,14 +6,17 @@ export const SEND_MESSAGE: string = 'SEND_MESSAGE'
 export const CHATS: string = "CHATS"
 export const CHATS_ID: string = "CHATS_ID"
 export const ALL_MESSAGES: string = "ALL_MESSAGES"
-export const RESET_STATE:string = 'RESET_STATE'
+export const RESET_STATE: string = 'RESET_STATE'
+export const CHATBOX_VIEW: string = 'CHATBOX_VIEW'
 
-export const userData = ({ email, uid }: userDataProps) => {
+export const userData = ({ email, uid, photoUrl, displayName }: userDataProps) => {
     return {
         type: USER_DATA,
         payload: {
             email,
-            uid
+            uid,
+            photoUrl,
+            displayName
         }
     }
 }
@@ -42,7 +45,13 @@ export const userChat = ({ user }: { user: any }) => {
 }
 
 
-// actions.js
+export const chatBoxView = ({ isView }: { isView: boolean }) => {
+    console.log(isView)
+    return {
+        type: CHATBOX_VIEW,
+        payload: isView
+    }
+}
 
 export const resetState = () => ({
     type: 'RESET_STATE'

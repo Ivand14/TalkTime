@@ -27,7 +27,6 @@ const Messages = () => {
     }, [chatId, dispatch])
 
 
-
     return (
         <div>
             {messageSaved && messageSaved?.map((mess: { id: string, senderId: string, sender: string, text: string }, index: number) => (
