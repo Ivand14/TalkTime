@@ -8,6 +8,7 @@ import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updat
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux"
 
+import { FaSearch } from "react-icons/fa";
 import Inputs from "./Input"
 import { MdOutlineInput } from "react-icons/md";
 import { useRouter } from "next/navigation";
@@ -62,7 +63,7 @@ const SearchContact = () => {
                     [combinedId + ".userData"]: {
                         uid: user.uid,
                         email: user.email,
-                        photoURL:user.photoURL
+                        photoURL: user.photoURL
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 })
@@ -70,7 +71,7 @@ const SearchContact = () => {
                     [combinedId + ".userData"]: {
                         uid: actualyId,
                         email: actualyEmail,
-                        photoURL:user.photoURL
+                        photoURL: user.photoURL
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 })
@@ -109,7 +110,7 @@ const SearchContact = () => {
                 </div>
             </div>
             <div>
-                <Inputs name="search" type="text" placeholder="Agregar contacto" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} onKeyDown={keyDown} className='lg:w-full rounded-mt-none rounded-bl-none md:w-full' />
+                <Inputs name="search" type="text" placeholder="Agregar contacto" value={userEmail} onChange={(event) => setUserEmail(event.target.value)} onKeyDown={keyDown} className='lg:w-full rounded-mt-none rounded-bl-none md:w-full' endContent={<FaSearch onClick={handleSearch} />} />
             </div>
             {user && (
                 <div className="bg-gray-400 p-2 rounded-bl-sm rounded-br-sm cursor-pointer mx-4" onClick={handleSelect}>
