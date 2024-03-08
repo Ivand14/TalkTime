@@ -1,17 +1,15 @@
 "use client"
 
-import { Avatar, Button } from "@nextui-org/react";
 import { RootActualyEmail, RootActualyId, RootActualyName, RootActualyPhoto } from "@/lib/definitions";
-import { auth, db } from "@/lib/firebase"
-import { chatId, resetState } from "@/redux/actions";
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux"
 
+import { Avatar } from "@nextui-org/react";
 import { FaSearch } from "react-icons/fa";
 import Inputs from "./Input"
-import { MdOutlineInput } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import Settings from "./Settings";
+import { chatId } from "@/redux/actions";
+import { db } from "@/lib/firebase"
 import { useState } from "react"
 
 const SearchContact = () => {
@@ -24,7 +22,6 @@ const SearchContact = () => {
     const actualyPhoto = useSelector((state: RootActualyPhoto) => state.actualyPhoto)
     const actualyName = useSelector((state: RootActualyName) => state.actualyName)
     const dispatch = useDispatch()
-    const router = useRouter()
 
     const handleSearch = async () => {
         //* Hago una query al firebase para que me busque al usuario que ingreso
@@ -86,14 +83,7 @@ const SearchContact = () => {
 
     }
 
-
-    const onSingout = () => {
-        signOut(auth).then(() => {
-            router.push('/')
-        }).catch((error) => {
-            console.log(error);
-        });
-    }
+    console.log(user)
 
 
     return (
@@ -104,9 +94,7 @@ const SearchContact = () => {
                     {actualyName ? <h2 className='capitalize'>{actualyName}</h2> : <h2>{actualyEmail}</h2>}
                 </div>
                 <div>
-                    <Button className="md:h-10 md:w-7" color="danger" variant="shadow" onClick={onSingout}>
-                        <MdOutlineInput size={30} />
-                    </Button>
+                    <Settings/>
                 </div>
             </div>
             <div>
