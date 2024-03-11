@@ -3,7 +3,6 @@
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, cn } from "@nextui-org/react";
 
 import { CiLogout } from "react-icons/ci";
-import { FaBedPulse } from "react-icons/fa6";
 import { GrUserSettings } from "react-icons/gr";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Spinner } from "@nextui-org/react";
@@ -39,6 +38,7 @@ export default function Settings() {
                 <DropdownItem
                     key="new"
                     startContent={<GrUserSettings className={iconClasses} />}
+                    onClick={() => router.push('/Profile')}
                 >
                     Cuenta
                 </DropdownItem>

@@ -3,7 +3,7 @@
 import { Avatar, Divider } from "@nextui-org/react";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 import { RootActualyId, RootUser } from "@/lib/definitions";
-import { chatId, userChat, chatBoxView } from "@/redux/actions";
+import { chatBoxView, chatId, userChat } from "@/redux/actions";
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 
@@ -34,7 +34,6 @@ const Contacts = () => {
 
     const handleSelect = (user: RootUser) => {
         dispatch(userChat({ user }))
-        setChatView(true)
     }
 
     const handleUidSelect = (uid: string) => {
@@ -42,16 +41,17 @@ const Contacts = () => {
     }
 
     const chatBox = () => {
-        dispatch(chatBoxView({isView:chatView}))
+        setChatView(true)
+        dispatch(chatBoxView({ isView: chatView }))
     }
 
-    console.log(chatView)
+
 
     return (
         <div className="flex-col  bg-slate-800   rounded-xl justify-beetwen  mt-3">
-            <section className='flex-col overflow-y-scroll h-[23rem]' onClick={chatBox}>
+            <div  className='flex-col overflow-y-scroll h-[23rem]'>
                 {Object.entries(chats).sort((a, b) => b[1].date - a[1].date).map((chat) => (
-                    <div key={chat[0]} onClick={() => handleSelect(chat[1].userData)}>
+                    <div key={chat[0]} onClick={() => {handleSelect(chat[1].userData),chatBox()}}>
                         <div className="flex items-center gap-5  mt-3 cursor-pointer" onClick={() => handleUidSelect(chat[0])}>
                             {chat[1]?.userData?.photoURL ? <Avatar src={chat[1]?.userData?.photoURL} size="lg" /> : <Avatar name={chat[1]?.userData?.email?.slice(0, 2).toUpperCase()} />}
                             <div className='flex-col'>
@@ -69,7 +69,7 @@ const Contacts = () => {
                         <Divider className="my-3 w-[98%] bg-white" />
                     </div>
                 ))}
-            </section>
+            </div>
         </div>
     );
 
