@@ -12,7 +12,8 @@ import { MdAddPhotoAlternate } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 import { doc, setDoc } from "firebase/firestore";
 import { ToastContainer, Zoom, toast } from 'react-toastify';
-import {Image} from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -88,7 +89,7 @@ export default function App() {
 
                 case 'auth/invalid-credential':
                     return toast.error('Revisa tu email o contraseña', {
-                        position: "bottom-left",
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -101,7 +102,19 @@ export default function App() {
 
                 case 'auth/missing-password':
                     return toast.error('Ingresa una contraseña', {
-                        position: "bottom-left",
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Zoom,
+                    });
+                case 'auth/wrong-password':
+                    return toast.error('Contraseña Incorrecta', {
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -124,7 +137,7 @@ export default function App() {
     }, [])
 
     const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsLoading(true)
+        setLoadingPhoto(true)
         const file = event.target.files && event.target.files[0]
         const formData = new FormData()
 
@@ -145,7 +158,7 @@ export default function App() {
         setCredentialsSingup({ ...credentialsSingup, photoURL: data.secure_url })
 
         setTimeout(() => {
-            setIsLoading(false)
+            setLoadingPhoto(false)
         }, 300)
 
     }
@@ -172,7 +185,20 @@ export default function App() {
             })
 
             await setDoc(doc(db, "userChats", NewUser.user.uid), {});
-            if (NewUser.operationType === 'signIn') router.push('/')
+            if (NewUser.operationType === 'signIn') {
+                setIsLoading(false)
+                return toast.success(`${credentialsSingup.name} Bienvenido a TalkTime`, {
+                    position: "bottom-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Zoom,
+                });
+            }
 
             setCredentialsSingup({
                 email: '',
@@ -259,17 +285,17 @@ export default function App() {
                 theme="dark"
                 transition={Zoom}
             />
-            <Card className='bg-[#18181d] rounded-l-2xl rounded-r-none z-10' shadow="sm">
+            <Card id='ImageDesktop' className='bg-[#18181d] rounded-l-2xl rounded-r-none z-10' shadow="sm">
                 <Image
                     src='/MessagingLogin.png'
                     alt='Image Login'
                     width={425}
                     height={425}
-                    isBlurred 
+                    isBlurred
                 />
             </Card>
 
-            <Card className=" bg-[#18181d] dark max-w-full w-[340px] h-[425px] border-none rounded-l-none" isBlurred >
+            <Card id='LoginMobile' className=" bg-[#18181d] dark max-w-full w-[340px] h-[425px] border-none rounded-l-none" isBlurred >
                 <CardBody className="overflow-hidden dark">
                     <Tabs
                         fullWidth
@@ -323,7 +349,12 @@ export default function App() {
                                     variant="bordered"
                                 />
                                 <label htmlFor="inputFile">
-                                    {credentialsSingup.photoURL === '' ? loadingPhoto ? <Spinner /> :
+                                    {credentialsSingup.photoURL === '' ? loadingPhoto ?
+                                        <div className='flex items-center gap-2'>
+                                            <Spinner />
+                                            <h4>Cargando Foto</h4>
+                                        </div>
+                                        :
                                         <div className='flex gap-3 items-center'>
                                             <MdAddPhotoAlternate size={40} color='black' className='bg-slate-100 p-2 rounded-md cursor-pointer' />
                                             <h4>Añadir foto de perfil</h4>
