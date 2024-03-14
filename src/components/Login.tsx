@@ -210,14 +210,14 @@ export default function App() {
                     theme: "dark",
                     transition: Zoom,
                 });
+                setCredentialsSingup({
+                    email: '',
+                    name: '',
+                    password: '',
+                    photoURL: ''
+                })
             }
 
-            setCredentialsSingup({
-                email: '',
-                name: '',
-                password: '',
-                photoURL: ''
-            })
 
         } catch (error: any) {
             setIsLoading(false)
