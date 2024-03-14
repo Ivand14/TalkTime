@@ -11,7 +11,7 @@ const SideBar = () => {
     console.log(isMobile)
 
     return (
-        <div id={isMobile ? "sidebarView" : 'sidebar'} className="flex-col  bg-slate-800 w-[30%] p-2 rounded-xl justify-beetwen">
+        <div id={isMobile ? "sidebarView" : 'sidebar'} className="flex-col  bg-[#27272A]  w-[30%] p-2 rounded-xl justify-beetwen">
             <SearchContact />
             <Contacts />
         </div>

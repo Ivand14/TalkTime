@@ -69,7 +69,7 @@ const ChatBox = () => {
 
 
     return (
-        <div id={isMobile ? 'chatMobile' : 'chat'} className="flex-col lg:h-[35rem] md:w-[55%]   bg-slate-800 w-[50%] p-2 rounded-xl justify-beetwen md:h-[30rem]">
+        <div id={isMobile ? 'chatMobile' : 'chat'} className="flex-col lg:h-[35rem] md:w-[55%]   bg-[#27272A] w-[50%] p-2 rounded-xl justify-beetwen md:h-[30rem]">
             {isMobile && <BsBoxArrowInLeft id='arrow' size={30} className="m-2" onClick={contactsBack} />}
             {emailContact.email &&
                 <section className='flex justify-center items-center w-auto rounded-xl p-3 mb-5  bg-slate-300 gap-1 text-black'>

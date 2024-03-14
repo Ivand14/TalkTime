@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { NextProviders } from "@/lib/NextProvider";
 import Providers from "@/lib/Providers";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

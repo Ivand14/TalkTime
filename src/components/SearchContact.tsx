@@ -83,8 +83,6 @@ const SearchContact = () => {
 
     }
 
-    console.log(user)
-
 
     return (
         <div className="flex-col items-center">

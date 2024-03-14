@@ -1,13 +1,11 @@
-import React from 'react'
+import Profile from '@/components/Profile'
 
-const Profile = () => {
+const myProfile = () => {
     return (
-        <div className="h-screen w-screen p-4 flex justify-center items-center">
-            <div  className="flex-col h-[90%] bg-slate-800 w-[50%] rounded-xl">
-                
-            </div>
+        <div>
+            <Profile />
         </div>
     )
 }
 
-export default Profile
+export default myProfile

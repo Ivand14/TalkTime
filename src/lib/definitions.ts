@@ -22,9 +22,20 @@ export interface ButtonProps {
     children: React.ReactNode
 }
 
-export interface credentials {
+export interface credentialsSingup {
     email: string,
     password: string,
+    name: string,
+    photoURL: string
+}
+
+export interface credentialsLogin {
+    email: string,
+    password: string,
+}
+
+export interface credentialsUpdate { 
+    email: string,
     name: string,
     photoURL: string
 }
@@ -35,10 +46,10 @@ export interface LoginCredentials {
 }
 
 export interface userDataProps {
-    email: string | null,
-    uid: string,
-    photoUrl: string | null,
-    displayName: string | null
+    email?: string | null,
+    uid?: string,
+    photoUrl?: string | null,
+    displayName?: string | null
 }
 
 export interface messagesProps {
@@ -50,8 +61,10 @@ export interface messagesProps {
 
 export interface RootUser {
     user: {
-        email: string,
-        uid: string
+        email?: string,
+        uid?: string,
+        photoUrl?: string,
+        displayName?: string
     }
 }
 
@@ -84,6 +97,6 @@ export interface messagesProps {
     }[]
 }
 
-export interface isMobile { 
-    chatBox:boolean
+export interface isMobile {
+    chatBox: boolean
 }

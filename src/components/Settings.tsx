@@ -26,7 +26,7 @@ export default function Settings() {
     }
 
     return (
-        <Dropdown className="bg-slate-800" >
+        <Dropdown className="bg-[#27272A]" >
             <DropdownTrigger>
                 <Button
                     variant="light"
