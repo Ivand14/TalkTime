@@ -68,7 +68,7 @@ const SearchContact = () => {
                     [combinedId + ".userData"]: {
                         uid: actualyId,
                         email: actualyEmail,
-                        photoURL: user.photoURL
+                        photoURL: actualyPhoto
                     },
                     [combinedId + ".date"]: serverTimestamp(),
                 })
