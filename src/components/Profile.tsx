@@ -95,6 +95,7 @@ const Profile = () => {
                 });
                 dispatch(userData({ email: actualyUser, uid: actualyUid, photoUrl: newData.photoURL, displayName: actualyName }))
                 setIsLoading(false)
+                setLoadingPhoto(false)
             }).catch((error) => {
                 setIsLoading(false)
                 console.log(error)
@@ -238,7 +239,7 @@ const Profile = () => {
                     value={newData.name}
                     onChange={handleUpdateUser}
                 />
-                <Button isLoading={isLoading}  type="submit" fullWidth color="primary">
+                <Button isLoading={isLoading}  type="submit" className="w-[20rem]  max-w-xs"  color="primary">
                     Actualizar
                 </Button>
             </form>
