@@ -77,7 +77,7 @@ const ReAuth = () => {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 placement="top-center"
-                className='bg-slate-800'
+                className='bg-[#18181d] '
             >
                 <ModalContent>
                     {(onClose) => (

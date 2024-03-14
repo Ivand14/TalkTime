@@ -48,7 +48,7 @@ const Contacts = () => {
 
 
     return (
-        <div className="flex-col  bg-[#27272A]  rounded-xl justify-beetwen  mt-3">
+        <div className="flex-col  bg-[#18181d]   rounded-xl justify-beetwen  mt-3">
             <div  className='flex-col overflow-y-scroll h-[23rem]'>
                 {Object.entries(chats).sort((a, b) => b[1].date - a[1].date).map((chat) => (
                     <div key={chat[0]} onClick={() => {handleSelect(chat[1].userData),chatBox()}}>

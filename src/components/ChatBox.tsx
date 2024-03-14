@@ -11,7 +11,7 @@ import Inputs from "./Input"
 import { MdEmail } from 'react-icons/md'
 import { MdSend } from 'react-icons/md'
 import Messages from "./Messages"
-import {chatBoxView} from '@/redux/actions'
+import { chatBoxView } from '@/redux/actions'
 import { db } from "@/lib/firebase"
 import { v4 } from 'uuid'
 
@@ -62,14 +62,18 @@ const ChatBox = () => {
         }
     }
 
-    const contactsBack = () => { 
-        dispatch(chatBoxView({isView:false}))
+    const contactsBack = () => {
+        dispatch(chatBoxView({ isView: false }))
+    }
+
+    const KeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => { 
+        event.code === 'Enter' && onSendMessages()
     }
 
 
 
     return (
-        <div id={isMobile ? 'chatMobile' : 'chat'} className="flex-col lg:h-[35rem] md:w-[55%]   bg-[#27272A] w-[50%] p-2 rounded-xl justify-beetwen md:h-[30rem]">
+        <div id={isMobile ? 'chatMobile' : 'chat'} className="flex-col lg:h-[35rem] md:w-[55%]   bg-[#18181d]  w-[50%] p-2 rounded-xl justify-beetwen md:h-[30rem]">
             {isMobile && <BsBoxArrowInLeft id='arrow' size={30} className="m-2" onClick={contactsBack} />}
             {emailContact.email &&
                 <section className='flex justify-center items-center w-auto rounded-xl p-3 mb-5  bg-slate-300 gap-1 text-black'>
@@ -86,7 +90,7 @@ const ChatBox = () => {
                         </div>
 
                         <div className=' w-full'>
-                            <Inputs name="chat" type="text" placeholder="Escribe un mensaje" value={sendMessage} className="w-full break-all lg:w-full md:w-full" endContent={<button onClick={onSendMessages} ><MdSend /></button>} onChange={(event) => onHandleChange(event)} />
+                            <Inputs name="chat" type="text" placeholder="Escribe un mensaje" value={sendMessage} className="w-full break-all lg:w-full md:w-full" endContent={<button onClick={onSendMessages} ><MdSend /></button>} onKeyDown={KeyDown} onChange={(event) => onHandleChange(event)} />
                         </div>
                     </>
                     :

@@ -200,7 +200,7 @@ const Profile = () => {
                 transition={Zoom}
             />
 
-            <form onSubmit={updateUser} id='SettingsProfile' className="flex flex-col h-auto bg-slate-800 w-[50%] rounded-xl justify-start items-center gap-5 p-2">
+            <form onSubmit={updateUser} id='SettingsProfile' className="flex flex-col h-auto bg-[#18181d]  w-[50%] rounded-xl justify-start items-center gap-5 p-2">
                 <div className='relative flex'>
                     <BsBoxArrowInLeft id='arrowProfile' size={30} className="absolute top-0 left-[-13rem] cursor-pointer" onClick={() => router.push('/Home')} />
                     <Avatar src={actualyPhoto} className="w-48 h-48 text-large m-2" />
