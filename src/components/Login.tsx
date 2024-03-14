@@ -76,7 +76,7 @@ export default function App() {
             switch (error.code) {
                 case 'auth/invalid-email':
                     return toast.error('Email Invalido', {
-                        position: "bottom-left",
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -114,6 +114,18 @@ export default function App() {
                     });
                 case 'auth/wrong-password':
                     return toast.error('Contraseña Incorrecta', {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Zoom,
+                    });
+                case 'auth/user-not-found':
+                    return toast.error('El usuario no existe', {
                         position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -188,7 +200,7 @@ export default function App() {
             if (NewUser.operationType === 'signIn') {
                 setIsLoading(false)
                 return toast.success(`${credentialsSingup.name} Bienvenido a TalkTime`, {
-                    position: "bottom-left",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -213,7 +225,7 @@ export default function App() {
             switch (error.code) {
                 case 'auth/invalid-email':
                     return toast.error('Email Invalido', {
-                        position: "bottom-left",
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -226,7 +238,7 @@ export default function App() {
 
                 case 'auth/missing-password':
                     return toast.error('Ingresa una contraseña', {
-                        position: "bottom-left",
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -239,7 +251,7 @@ export default function App() {
 
                 case 'auth/weak-password':
                     return toast.error('La contraseña debe tener mas de 6 caracteres', {
-                        position: "bottom-left",
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -252,7 +264,7 @@ export default function App() {
 
                 case "auth/email-already-in-use":
                     return toast.error('Email en uso', {
-                        position: "bottom-left",
+                        position: "bottom-center",
                         autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
@@ -267,13 +279,12 @@ export default function App() {
         }
     }
 
-    console.log(credentialsSingup)
-    console.log(credentialsLogin)
+
 
     return (
         <div className="flex  w-full justify-center items-center">
             <ToastContainer
-                position="bottom-left"
+                position="bottom-center"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}

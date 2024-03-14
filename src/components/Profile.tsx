@@ -85,7 +85,7 @@ const Profile = () => {
             }).then(() => {
                 setLoadingPhoto(true)
                 toast.success('Foto actualizada', {
-                    position: "bottom-left",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -101,7 +101,7 @@ const Profile = () => {
                 setIsLoading(false)
                 console.log(error)
                 toast.error('Ocurrio un error, vuelve a intentarlo', {
-                    position: "bottom-left",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -117,7 +117,7 @@ const Profile = () => {
                 displayName: newData.name
             }).then(() => {
                 toast.success('Nombre Actualizado', {
-                    position: "bottom-left",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -133,7 +133,7 @@ const Profile = () => {
                 setIsLoading(false)
                 console.log(error)
                 toast.error(error, {
-                    position: "bottom-left",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -147,7 +147,7 @@ const Profile = () => {
 
             newData.email && updateEmail(auth.currentUser, newData.email).then(() => {
                 toast.success('Email actualizado', {
-                    position: "bottom-left",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -163,7 +163,7 @@ const Profile = () => {
                 setIsLoading(false)
                 console.log(error)
                 toast.error('Debes re autenticarte', {
-                    position: "bottom-left",
+                    position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
                     closeOnClick: true,
@@ -189,7 +189,7 @@ const Profile = () => {
     return (
         <div className="h-screen w-screen p-4 flex justify-center items-center">
             <ToastContainer
-                position="bottom-left"
+                position="bottom-center"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
