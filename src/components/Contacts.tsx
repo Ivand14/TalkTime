@@ -53,7 +53,7 @@ const Contacts = () => {
                 {Object.entries(chats).sort((a, b) => b[1].date - a[1].date).map((chat) => (
                     <div key={chat[0]} onClick={() => {handleSelect(chat[1].userData),chatBox()}}>
                         <div className="flex items-center gap-5  mt-3 cursor-pointer" onClick={() => handleUidSelect(chat[0])}>
-                            {chat[1]?.userData?.photoURL ? <Avatar src={chat[1]?.userData?.photoURL} size="lg" /> : <Avatar name={chat[1]?.userData?.email?.slice(0, 2).toUpperCase()} />}
+                            <Avatar src={chat[1]?.userData?.photoURL} size="lg" /> 
                             <div className='flex-col'>
                                 <h2>{chat[1]?.userData?.email}</h2>
                                 {chat[1].lastMessage &&
