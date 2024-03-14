@@ -55,7 +55,6 @@ const Profile = () => {
 
         const data = await response.json()
 
-        console.log(data)
 
         setNewData({ ...newData, photoURL: data.secure_url })
     }

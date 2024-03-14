@@ -46,7 +46,7 @@ export const userChat = ({ user }: { user: any }) => {
 
 
 export const chatBoxView = ({ isView }: { isView: boolean }) => {
-    console.log(isView)
+
     return {
         type: CHATBOX_VIEW,
         payload: isView

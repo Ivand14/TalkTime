@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 const SideBar = () => {
 
     const isMobile = useSelector((state: isMobile) => state.chatBox)
-    console.log(isMobile)
+
 
     return (
         <div id={isMobile ? "sidebarView" : 'sidebar'} className="flex-col  bg-[#27272A]  w-[30%] p-2 rounded-xl justify-beetwen">

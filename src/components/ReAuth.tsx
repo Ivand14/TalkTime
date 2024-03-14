@@ -9,6 +9,8 @@ import { LoginCredentials } from '@/lib/definitions'
 import { MailIcon } from '@/components/MailIcon'
 import { MdOutgoingMail } from "react-icons/md";
 import { auth } from '@/lib/firebase'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, Zoom, toast } from 'react-toastify';
 
 const ReAuth = () => {
 
@@ -34,7 +36,17 @@ const ReAuth = () => {
     const reAuthenticate = () => {
         const credential = promptForCredentials()
         auth.currentUser && reauthenticateWithCredential(auth.currentUser, credential).then(() => {
-            console.log('Re autenticado')
+            toast.success('El usuario fue re autenticado', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Zoom,
+            });
         }).catch((error) => {
             console.log(error)
         });
@@ -45,6 +57,19 @@ const ReAuth = () => {
 
     return (
         <div className='flex-col items-center justify-center '>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition={Zoom}
+            />
             <Button onPress={onOpen} variant="light">
                 <MdOutgoingMail size='30' color='white' />
             </Button>
