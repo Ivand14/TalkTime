@@ -51,7 +51,7 @@ body {
 
 
 
-@media (min-width:320px) and (max-width:644px) {
+@media (min-width:320px) and (max-width:834px) {
   #chat{
       display:none;
   }
@@ -79,5 +79,11 @@ body {
   #LoginMobile{
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+  }
+  #SettingsProfile{
+    width:100%;
+  }
+  #arrowProfile{
+    transform: translate(10rem, 1.5rem);
   }
 }

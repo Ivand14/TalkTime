@@ -2,15 +2,14 @@
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Avatar, Spinner } from "@nextui-org/react";
+import { Avatar, Spinner, Button } from "@nextui-org/react";
 import { RootActualyEmail, RootActualyId, RootActualyName, RootActualyPhoto, credentialsUpdate } from '@/lib/definitions'
 import { ToastContainer, Zoom, toast } from 'react-toastify';
 import { updateEmail, updateProfile } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux"
 
 import { BsBoxArrowInLeft } from "react-icons/bs";
-import ButtonLoading from '@/components/ButtonLoading'
-import ButtonR from './ButtonR'
+
 import { FaCheck } from "react-icons/fa";
 import { Input } from "@nextui-org/react";
 import ReAuth from '@/components/ReAuth'
@@ -178,9 +177,9 @@ const Profile = () => {
         }
 
         setNewData({
-            name:'',
-            email:'',
-            photoURL:'',
+            name: '',
+            email: '',
+            photoURL: '',
         })
 
     }
@@ -202,9 +201,9 @@ const Profile = () => {
                 transition={Zoom}
             />
 
-            <form onSubmit={updateUser} className="flex flex-col h-auto bg-slate-800 w-[50%] rounded-xl justify-start items-center gap-5 p-2">
+            <form onSubmit={updateUser} id='SettingsProfile' className="flex flex-col h-auto bg-slate-800 w-[50%] rounded-xl justify-start items-center gap-5 p-2">
                 <div className='relative flex'>
-                    <BsBoxArrowInLeft size={30} className="absolute top-0 left-[-13rem] cursor-pointer" onClick={() => router.push('/Home')} />
+                    <BsBoxArrowInLeft id='arrowProfile' size={30} className="absolute top-0 left-[-13rem] cursor-pointer" onClick={() => router.push('/Home')} />
                     <Avatar src={actualyPhoto} className="w-48 h-48 text-large m-2" />
                     <label htmlFor="inputFile" className="absolute top-0 right-0 transform translate-x-[-1rem] translate-y-[10rem] cursor-pointer">
                         {newData.photoURL === '' ? loadingPhoto ? <Spinner /> : <RiPencilFill size={40} color='black' className='bg-slate-100 p-2 rounded-md' /> : <FaCheck size={40} color='black' className='bg-slate-100 p-2 rounded-md' />}
@@ -240,7 +239,9 @@ const Profile = () => {
                     value={newData.name}
                     onChange={handleUpdateUser}
                 />
-                {!isLoading ? <ButtonR type='submit'>Actualizar</ButtonR> : <ButtonLoading />}
+                <Button isLoading={isLoading}  type="submit" fullWidth color="primary">
+                    Actualizar
+                </Button>
             </form>
         </div>
     )

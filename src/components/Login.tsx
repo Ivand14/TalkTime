@@ -199,7 +199,13 @@ export default function App() {
             await setDoc(doc(db, "userChats", NewUser.user.uid), {});
             if (NewUser.operationType === 'signIn') {
                 setIsLoading(false)
-                return toast.success(`${credentialsSingup.name} Bienvenido a TalkTime`, {
+                setCredentialsSingup({
+                    email: '',
+                    name: '',
+                    password: '',
+                    photoURL: ''
+                })
+                toast.success(`${credentialsSingup.name} Bienvenido a TalkTime`, {
                     position: "bottom-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -210,12 +216,6 @@ export default function App() {
                     theme: "dark",
                     transition: Zoom,
                 });
-                setCredentialsSingup({
-                    email: '',
-                    name: '',
-                    password: '',
-                    photoURL: ''
-                })
             }
 
 
